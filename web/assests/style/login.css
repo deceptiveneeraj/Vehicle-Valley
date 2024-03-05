@@ -1,0 +1,101 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensures that the body takes up the full height of the viewport */
+    background: black; /* Corrected typo 'balck' to 'black' */
+}
+
+.background-image {
+    /* Removed redundant height property; only one is necessary */
+    background-image: url('../images/login.jpg'); /* Path to your background image */
+    background-size: cover; /* Ensures the background covers the entire element */
+    background-position: center; /* Centers the background image */
+    background-attachment: fixed; /* This makes the background image fixed during scroll */
+    position: relative; /* Establishes a stacking context */
+    height: 100vh; /* 100% of the viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents any overflow from the background image container */
+}
+
+form {
+    margin-top: 80px;
+    width: 400px;
+    /*margin: auto;  Centers the form horizontally and vertically if within a flex container*/ 
+    background-color: rgba(249, 249, 249, 0.7); /* Semi-transparent background for the form */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Adds scroll to the form if its content overflows vertically */
+    max-height: 90vh; /* Limits the form height to ensure it doesn't go off screen */
+}
+
+/* Additional styles to ensure the navbar and other elements behave as expected */
+.navbar {
+    position: fixed; /* Makes the navbar fixed at the top */
+    width: 100%; /* Ensures the navbar extends full width */
+    z-index: 1000; /* Keeps the navbar above other content */
+}
+
+/* Style the form headings */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Style form input fields */
+.form-floating input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Style form submit button */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Style forgot password link */
+a.forgot-link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #28a745;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+a.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* Style registration link */
+a.register-link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+a.register-link:hover {
+    text-decoration: underline;
+}
