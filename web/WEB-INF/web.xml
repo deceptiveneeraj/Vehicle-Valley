@@ -40,6 +40,22 @@
         <servlet-name>CancelBooking</servlet-name>
         <servlet-class>CancelBooking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Message</servlet-name>
+        <servlet-class>Message</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Job</servlet-name>
+        <servlet-class>Job</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Approved</servlet-name>
+        <servlet-class>Approved</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Rejected</servlet-name>
+        <servlet-class>Rejected</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSignup</servlet-name>
         <url-pattern>/LoginSignup</url-pattern>
@@ -79,6 +95,22 @@
     <servlet-mapping>
         <servlet-name>CancelBooking</servlet-name>
         <url-pattern>/CancelBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Message</servlet-name>
+        <url-pattern>/Message</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Job</servlet-name>
+        <url-pattern>/Job</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Approved</servlet-name>
+        <url-pattern>/Approved</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Rejected</servlet-name>
+        <url-pattern>/Rejected</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

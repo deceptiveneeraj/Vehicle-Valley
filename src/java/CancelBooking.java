@@ -52,8 +52,7 @@ public class CancelBooking extends HttpServlet {
                 // Call your Mail.send() method here
                 Mail.send(to, sub, msg);
 
-                RequestDispatcher rd = request.getRequestDispatcher("adminhome.jsp");
-                rd.include(request, response);
+                response.sendRedirect("adminhome.jsp");
             }
 //            smt.executeUpdate("SET @newSerial:=0");
 //            smt.executeUpdate("UPDATE booknow SET id = @newSerial:=@newSerial+1 ORDER BY id");

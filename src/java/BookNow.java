@@ -104,16 +104,16 @@ public class BookNow extends HttpServlet {
             int i = ps.executeUpdate();
 
             if (i > 0) {
-                out.println("Data inserted successfully.");
+                // out.println("Data inserted successfully.");
                 // Redirect to autosellimg.jsp
                 RequestDispatcher rd = request.getRequestDispatcher("license.jsp");
                 rd.include(request, response);
             }
 
             // Rearrange serial number
-            Statement smt = cn.createStatement();
-            smt.executeUpdate("SET @newSerial:=0");
-            smt.executeUpdate("UPDATE booknow SET id = @newSerial:=@newSerial+1 ORDER BY id");
+//            Statement smt = cn.createStatement();
+//            smt.executeUpdate("SET @newSerial:=0");
+//            smt.executeUpdate("UPDATE booknow SET id = @newSerial:=@newSerial+1 ORDER BY id");
 
         } catch (Exception e) {
             out.println(e.getMessage());

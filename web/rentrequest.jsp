@@ -55,7 +55,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="adminhome.jsp" style="color: white; font-size: 25px; margin-right: 30px;">Vehicle Valley</a>
-                <a href="adminhome.jsp" style="color: white; text-decoration: none; margin: 15px;">Home</a>
+                <a href="adminhome.jsp" style="color: white; text-decoration: none; margin: 15px;">Admin Home</a>
             </div>
         </nav>
         <!-- Navbar End -->
@@ -111,10 +111,10 @@
                             <a href="licenseimg.jsp?id=<%=id%>"><img src="assests/images/license/<%= limg%>" class="license-img" alt="License Image"></a>
                         </td>
                         <td>
-                            <a href="ConfirmBooking?email=<%=email%>&name=<%=name%>">Confirm Booking</a>
+                            <a href="ConfirmBooking?email=<%=email%>&name=<%=name%>" style="text-decoration: none;">Confirm Booking</a>
                         </td>
                         <td> 
-                            <a href="CancelBooking?email=<%=email%>&name=<%=name%>">Cancel Booking</a>
+                            <a href="CancelBooking?email=<%=email%>&name=<%=name%>" style="text-decoration: none;">Cancel Booking</a>
                         </td>
                     </tr>
                     <%

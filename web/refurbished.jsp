@@ -9,7 +9,11 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", -1);
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -58,23 +62,24 @@
                         while (rs.next()) {
                             int vid = rs.getInt(1);
                             String vtype = rs.getString(2);
-                            String cname = rs.getString(3);
-                            String vname = rs.getString(4);
-                            String ryear = rs.getString(5);
-                            String mileage = rs.getString(6);
-                            String trans = rs.getString(7);
-                            String ftype = rs.getString(8);
-                            String eprice = rs.getString(9);
-                            String email = rs.getString(10);
-                            String mobile = rs.getString(11);
-                            String desc = rs.getString(12);
-                            String img = rs.getString(13);
+                            String sid = rs.getString(3);
+                            String cname = rs.getString(4);
+                            String vname = rs.getString(5);
+                            String ryear = rs.getString(6);
+                            String mileage = rs.getString(7);
+                            String trans = rs.getString(8);
+                            String ftype = rs.getString(9);
+                            String eprice = rs.getString(10);
+                            String email = rs.getString(11);
+                            String mobile = rs.getString(12);
+                            String desc = rs.getString(13);
+                            String img = rs.getString(14);
                 %>
                 <div class="col" style="margin-top: 30px;">
                     <div class="card h-100">
-                        <img src="assests/images/autosell/<%= img%>" class="card-img-top" alt="Vehicle Image">
+                        <img src="assests/images/autosell/<%=img%>" class="card-img-top" alt="Vehicle Image">
                         <div class="card-body">
-                            <h5 class="card-title"><%= vname%></h5>
+                            <h5 class="card-title"><%=cname%> <%= vname%></h5>
                             <p class="card-text"><b>Description</b>: <%= desc%></p>
                             <a href="moredetails.jsp?id=<%=vid%>" class="btn btn-primary">More Details</a>
                         </div>

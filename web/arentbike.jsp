@@ -31,15 +31,15 @@
             <!--navbar start-->
             <nav class="navbar navbar-expand-lg bg-body-tertiary navbar fixed-top bg-body-tertiary"data-bs-theme="dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index.jsp" style="color: white; font-size: 25px; margin-right: 30px;">Vehicle Valley</a>
-                    <a href="index.jsp" style="color: white; text-decoration: none; margin: 15px;">Home</a>
+                    <a class="navbar-brand" href="adminhome.jsp" style="color: white; font-size: 25px; margin-right: 30px;">Vehicle Valley</a>
+                    <a href="adminhome.jsp" style="color: white; text-decoration: none; margin: 15px;">Admin Home</a>
                 </div>
             </nav>
             <!--navbar end-->
 
             <!--form start-->
             <form action="RentBike?action=rentbike" method="post" style="">
-                <h3 style="color: black; padding: 17px; text-align: center;">Car On Rent</h3>
+                <h3 style="color: black; padding: 17px; text-align: center;">Bike On Rent</h3>
                 <div id="error" style="color: red; font-size: 17px; font-weight: bold; text-align: center; margin-bottom: 15px;">
                     <!--Here error message shown-->
                 </div>

@@ -24,10 +24,9 @@
             <!--navbar start-->
             <nav class="navbar navbar-expand-lg bg-body-tertiary navbar fixed-top bg-body-tertiary"data-bs-theme="dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index.jsp" style="color: white; font-size: 25px; margin-right: 30px;">Vehicle Valley</a>
-                    <a href="index.jsp" style="color: white; text-decoration: none; margin: 15px;">Home</a>
+                    <a class="navbar-brand" href="adminhome.jsp" style="color: white; font-size: 25px; margin-right: 30px;">Vehicle Valley</a>
+                    <a href="adminhome.jsp" style="color: white; text-decoration: none; margin: 15px;">Admin Home</a>
                 </div>
-
             </nav>
             <!--navbar end-->
 
@@ -46,6 +45,11 @@
                         <option value="Scooty">Scooty</option>
                     </select>
                 </div>
+                
+                <!--<div class="form-floating mb-3">-->
+                    <input type="text" class="form-control" id="floatingInput" name="sid" value="${id}" placeholder="" readonly=""hidden="">
+                    <!--<label for="floatingInput">Email address</label>-->
+                <!--</div>-->
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="floatingInput" name="cname" placeholder="Vehicle Company Name" required="">
@@ -91,10 +95,10 @@
                     <input type="text" class="form-control" id="floatingInput" name="eprice" placeholder="Expected Price" required="">
                     <label for="floatingInput">At What Price You want to Sell</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required="">
-                    <label for="floatingInput">Email address</label>
-                </div>
+                <!--<div class="form-floating mb-3">-->
+                <input type="email" class="form-control" id="floatingInput" name="email" value="${email}" placeholder="name@example.com" readonly="" hidden="">
+                    <!--<label for="floatingInput">Email address</label>-->
+                <!--</div>-->
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="floatingInput" name="mobile" pattern="[6789][0-9]{9}" placeholder="Mobile Number" maxlength="10" required="">
                     <label for="floatingInput">Mobile</label>

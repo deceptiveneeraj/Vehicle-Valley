@@ -12,8 +12,13 @@
 <%
     com.vehiclevalley.logincheck.LoginCheck.checklogin(request, response);
 %>
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", -1);
+%>
 <%!
-    String vtype, cname, vname, ryear, mileage, trans, ftype, eprice, email, mobile, desc, img;
+    String vtype, sid, cname, vname, ryear, mileage, trans, ftype, eprice, email, mobile, desc, img;
 %>
 <%
     int vid = Integer.parseInt(request.getParameter("id"));
@@ -23,17 +28,18 @@
     ResultSet rs = smt.executeQuery("SELECT * FROM autosell WHERE id = " + vid);
     if (rs.next()) {
         vtype = rs.getString(2);
-        cname = rs.getString(3);
-        vname = rs.getString(4);
-        ryear = rs.getString(5);
-        mileage = rs.getString(6);
-        trans = rs.getString(7);
-        ftype = rs.getString(8);
-        eprice = rs.getString(9);
-        email = rs.getString(10);
-        mobile = rs.getString(11);
-        desc = rs.getString(12);
-        img = rs.getString(13);
+        sid = rs.getString(3);
+        cname = rs.getString(4);
+        vname = rs.getString(5);
+        ryear = rs.getString(6);
+        mileage = rs.getString(7);
+        trans = rs.getString(8);
+        ftype = rs.getString(9);
+        eprice = rs.getString(10);
+        email = rs.getString(11);
+        mobile = rs.getString(12);
+        desc = rs.getString(13);
+        img = rs.getString(14);
     }
 %>
 <!DOCTYPE html>
@@ -62,7 +68,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
-                padding: 20px;
+                padding: 10px;
             }
 
             .car-image {
@@ -119,12 +125,12 @@
                     <p><strong>Company Name:</strong> <%=cname%></p>
                     <p><strong>Modal or Vehicle Name:</strong> <%=vname%></p>
                     <p><strong>Registration Year:</strong> <%=ryear%></p>
-                    <p><strong>Mileage:</strong> <%=mileage%></p>
+                    <p><strong>Mileage:</strong> <%=mileage%> kmpl</p>
                     <p><strong>Transmission:</strong> <%=trans%></p>
                     <p><strong>Fuel Type:</strong> <%=ftype%></p>
 
                     <br>
-                        <p><strong>Expected Price:</strong> <%=eprice%></p>
+                    <p><strong>Expected Price:</strong> <%=eprice%></p>
                     <br>
                     <p><strong>Description:</strong> <%=desc%></p>
                     <br>
@@ -132,6 +138,9 @@
                     <h4>Seller Contact Info</h4>
                     <p><strong>Email:</strong> <%=email%></p>
                     <p><strong>Mobile:</strong> <%=mobile%></p>
+
+                    <li style="padding: 1px 8px; background-color: #007bff; border-radius: 15px; text-align: center; list-style: none;"><a href="chat.jsp?id=<%=sid%>" style="text-decoration: none; color: white; font-size: 16px; font-weight: bold;">Chat With Seller</a></li>
+ 
                 </div>
             </div>
         </div>

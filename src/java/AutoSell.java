@@ -69,6 +69,7 @@ public class AutoSell extends HttpServlet {
 
         try {
             String vtype = request.getParameter("vtype");
+            String sid = request.getParameter("sid");
             String cname = request.getParameter("cname");
             String vname = request.getParameter("vname");
             String ryear = request.getParameter("ryear");
@@ -87,25 +88,26 @@ public class AutoSell extends HttpServlet {
             Connection cn = CreateConnection.getConnection();
 
             // Prepare the statement
-            String sql = "INSERT INTO autosell (vehicle_type, company_name, vehicle_name, registration_year, mileage, transmission, fuel_type, expected_price, email, mobile, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO autosell (vehicle_type, seller_id, company_name, vehicle_name, registration_year, mileage, transmission, fuel_type, expected_price, email, mobile, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, vtype);
-            ps.setString(2, cname);
-            ps.setString(3, vname);
-            ps.setString(4, ryear);
-            ps.setString(5, mileage);
-            ps.setString(6, trans);
-            ps.setString(7, ftype);
-            ps.setString(8, eprice);
-            ps.setString(9, email);
-            ps.setString(10, mobile);
-            ps.setString(11, desc);
+            ps.setString(2, sid);
+            ps.setString(3, cname);
+            ps.setString(4, vname);
+            ps.setString(5, ryear);
+            ps.setString(6, mileage);
+            ps.setString(7, trans);
+            ps.setString(8, ftype);
+            ps.setString(9, eprice);
+            ps.setString(10, email);
+            ps.setString(11, mobile);
+            ps.setString(12, desc);
 
             // Execute the update
             int i = ps.executeUpdate();
 
             if (i > 0) {
-                out.println("Data inserted successfully.");
+                // out.println("Data inserted successfully.");
                 // Redirect to autosellimg.jsp
                 RequestDispatcher rd = request.getRequestDispatcher("autosellimg.jsp");
                 rd.include(request, response);

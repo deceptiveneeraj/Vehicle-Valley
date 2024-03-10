@@ -1,8 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : 17-Feb-2024, 3:33:51 pm
-    Author     : neera
---%>
 <%
     // Login or Logout
     String email = (String) session.getAttribute("email");
@@ -17,380 +12,912 @@
         loginouturl = "LoginSignup?action=logout";
     }
 %>
+<%@ page import="com.vehiclevalley.logincheck.LoginCheck" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="en">
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+        <link
+            href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+
+        <!-- title of site -->
         <title>Vehicle Valley</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                /*overflow-y: hidden;  Hide vertical scrollbar */
-            }
 
-            /*footer*/
-            /* Footer Section */
-            .footer {
-                background-color: black;
-                padding: 80px 0;
-                color: #fff;
-            }
+        <!-- For favicon png -->
+        <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png" />
 
-            .footer__contact {
-                margin-bottom: 40px;
-            }
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
-            .footer__contact__title h2 {
-                color: #fff;
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
+        <!--linear icon css-->
+        <link rel="stylesheet" href="assets/css/linearicons.css">
 
-            .footer__contact__option {
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-            }
+        <!--flaticon.css-->
+        <link rel="stylesheet" href="assets/css/flaticon.css">
 
-            .option__item {
-                margin-right: 20px;
-                font-size: 16px;
-            }
+        <!--animate.css-->
+        <link rel="stylesheet" href="assets/css/animate.css">
 
-            .option__item.email {
-                margin-right: 0;
-            }
+        <!--owl.carousel.css-->
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
 
-            .footer__about {
-                margin-bottom: 40px;
-            }
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-            .footer__logo img {
-                max-width: 150px;
-            }
+        <!-- bootsnav -->
+        <link rel="stylesheet" href="assets/css/bootsnav.css">
 
-            .footer__social a {
-                display: inline-block;
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
-                text-align: center;
-                background: #333;
-                border-radius: 50%;
-                margin-right: 10px;
-                font-size: 18px;
-            }
+        <!--style.css-->
+        <link rel="stylesheet" href="assets/css/style.css">
 
-            .footer__social a:hover {
-                background: #555;
-            }
+        <!--responsive.css-->
+        <link rel="stylesheet" href="assets/css/responsive.css">
 
-            .footer__widget {
-                margin-bottom: 40px;
-            }
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
-            .footer__widget h5 {
-                font-size: 18px;
-                margin-bottom: 20px;
-                color: #fff;
-            }
+        <!--[if lt IE 9]>
+                        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+                        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
-            .footer__widget ul {
-                padding: 0;
-                list-style: none;
-            }
-
-            .footer__widget ul li {
-                margin-bottom: 10px;
-            }
-
-            .footer__widget ul li a {
-                color: #ccc;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            .footer__widget ul li a:hover {
-                color: #fff;
-            }
-
-            .footer__brand ul {
-                padding: 0;
-                list-style: none;
-            }
-
-            .footer__brand ul li {
-                margin-bottom: 10px;
-            }
-
-            .footer__brand ul li a {
-                color: #ccc;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            .footer__brand ul li a:hover {
-                color: #fff;
-            }
-
-            .footer__copyright__text {
-                text-align: center;
-                margin-top: 20px;
-                color: #ccc;
-            }
-
-            .footer__copyright__text p {
-                margin: 0;
-            }
-
-            .footer__copyright__text a {
-                color: #ccc;
-                text-decoration: none;
-            }
-
-            .footer__copyright__text a:hover {
-                color: #fff;
-            }
-
-        </style>
     </head>
+
     <body>
-        <!--navbar start-->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar fixed-top bg-body-tertiary"data-bs-theme="dark"">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.jsp" style="font-size: 32px; margin-right: 55px;">Vehicle Valley</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="autosell.jsp">Vehicle Sell</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="refurbished.jsp">Refurbished</a>
-                        </li>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Career</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                On Rent
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!--<li><a class="dropdown-item" href="#">Bus</a></li>-->
-                                <li><a class="dropdown-item" href="rentcar.jsp">Car</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="rentbike.jsp">Bike $ Scooty</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Accounts
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
-                                <li><a class="dropdown-item" href="aboutus.jsp">About Us</a></li>
-                                <li><a class="dropdown-item" href="#">Contact Us</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="<%=loginouturl%>"><%=loginlogout%></a></li>
-                            </ul>
-                        </li>
+        <!--welcome-hero start -->
+        <section id="home" class="welcome-hero">
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="message.jsp">Messages</a>
-                        </li>
+            <!-- top-area Start -->
+            <div class="top-area">
+                <div class="header-area">
+                    <!-- Start Navigation -->
+                    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"
+                         data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
 
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true" href="#">AutoXchange</a>
-                        </li>
- 
-                        <!--                        <li class="nav-item">
-                                                    <a class="nav-link" href="<%=loginouturl%>"><%=loginlogout%></a>
-                                                </li>-->
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <!--navbar end-->
+                        <div class="container">
 
-        <!--Carousel start-->
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="margin-top:70px;">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://wallpaperaccess.com/full/33120.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://wallup.net/wp-content/uploads/2019/09/628301-il-2012-concept-bike-landscape-mountains-motorcycle-motorcyclist-race-road-speed.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://s-media-cache-ak0.pinimg.com/originals/06/a6/ab/06a6ab486646888ee44f78a0be6df021.jpg" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <!--Carousel end-->
+                            <!-- Start Header Navigation -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target="#navbar-menu">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="#" style="margin-left: -30px; font-size: 20px;">Vehicle Valley<span></span></a>
 
-        <!-- Services Section Begin -->
-        <section class="services spad">
+                            </div><!--/.navbar-header-->
+                            <!-- End Header Navigation -->
+
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu" style="margin-right: -50px;">
+                                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                                    <li class=" scroll active"><a href="#home" style="margin-right: -17px;">home</a></li>
+                                    <li class="scroll"><a href="#service" style="margin-right: -17px;">service</a></li>
+                                    <li class="scroll"><a href="#featured-cars" style="margin-right: -17px;">featured cars</a></li>
+                                    <li class="scroll"><a href="#new-cars" style="margin-right: -17px;">new cars</a></li>
+                                    <li class="scroll"><a href="#brand" style="margin-right: -17px;">brands</a></li>
+                                    <li class="scroll"><a href="#contact" style="margin-right: -17px;">contact</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Accounts
+                                        </a>
+                                        <ul class="dropdown-menu">		
+                                            <li><a class="dropdown-item" href="profile.jsp" style="font-size: 18px;">Profile</a></li>
+                                            <li><a href="messages.jsp" style="font-size: 18px;">Messages</a></li>
+                                            <li><a class="dropdown-item" href="aboutus.jsp"style="font-size: 18px;">About Us</a></li><br>
+                                            <li><a class="dropdown-item" href="jobs.jsp"style="font-size: 18px;">Jobs</a></li>
+                                            <li><hr class="dropdown-divider"></li><br>
+                                            <li><a class="dropdown-item" style="font-size: 18px;" href="<%=loginouturl%>"><%=loginlogout%></a></li>
+                                        </ul>
+                                    </li>
+                                </ul><!--/.nav -->
+                            </div><!-- /.navbar-collapse -->
+                        </div><!--/.container-->
+                    </nav><!--/nav-->
+                    <!-- End Navigation -->
+                </div><!--/.header-area-->
+                <div class="clearfix"></div>
+
+            </div><!-- /.top-area-->
+            <!-- top-area End -->
+
             <div class="container">
-                <div class="row" style="text-align: center; margin: 50px 0px;">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <span class="text-danger"style="font-weight:bold;">Our Services</span>
-                            <h2>What We Offers</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                        </div>
-                    </div>
+                <div class="welcome-hero-txt">
+                    <h2>Get your desired car in resonable price</h2>
+                    <p>
+                        Take the vehicle on rent form here in the resonable price and also buy from here.
+                        <br><br><br>
+                    </p>
+                    <!--<button class="welcome-btn" onclick="window.location.href = '#'">contact us</button>-->
+                    <!--<br><br>-->
                 </div>
+            </div>
+
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="services__item">
-                            <img src="https://cdn5.vectorstock.com/i/thumb-large/53/69/auto-car-logo-rent-vector-38105369.jpg" alt="" style="height: 250px;">
-                            <h5>Rental A Cars</h5>
-                            <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
-                                viverra maecenas.</p>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="services__item">
-                            <img src="https://1.bp.blogspot.com/-twdKBRBRjk0/XqlLzDzp5iI/AAAAAAAAABE/2Dpdgc8pMEs4_UG05XqTTSihWX1KMccegCLcBGAsYHQ/s1600/download.png" alt="" style="height: 250px;">
-                            <h5>Buying A Cars</h5>
-                            <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
-                                viverra maecenas.</p>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="services__item">
-                            <img src="https://th.bing.com/th/id/OIP.w8xIexenk4hF56FcwoU-XQAAAA?w=240&h=240&rs=1&pid=ImgDetMain" alt="" style="height: 250px;">
-                            <h5>Car Maintenance</h5>
-                            <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
-                                viverra maecenas.</p>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="services__item">
-                            <img src="https://www.vippng.com/png/detail/387-3875617_24-7-support-24-7-support-png.png" alt="" style="height: 250px;">
-                            <h5>Support 24/7</h5>
-                            <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
-                                viverra maecenas.</p>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <div class="col-md-12">
+                        <div class="model-search-content">
+
+
+                            <!--form start-->
+                            <form action="AutoSell?action=sellinfo" method="post" onsubmit="return valid();">
+
+                                <!--<h3 style="color:black; text-align: center;">Add Your Old Vehicle To Sell Here</h3>-->
+
+                                <div id="error" style="color: red; font-weight: bold; font-size: 18.5px; text-align: center; margin-bottom: 18px;">
+                                    <h3 style="color:black; text-align: center;">Add Your Old Vehicle To Sell Here</h3>
+
+                                </div>
+
+                                <div class="row" style="margin: 20px;">
+                                    <div class="col-md-offset-5 col-md-3 col-sm-12">
+                                        <div class="model-select-icon" style="align-items: center; text-align: center;">
+                                            <select class="form-control" name="vtype">
+                                                <option selected>Vehicle Type</option>
+                                                <option value="Car">Car</option>
+                                                <option value="Bike">Bike</option>
+                                                <option value="Scooty">Scooty</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-floating mb-3">-->
+                                <input type="text" class="form-control" id="floatingInput" name="sid" value="${id}" placeholder="" readonly hidden style="display: none;">
+                                <!--<label for="floatingInput">Email address</label>-->
+                                <!--</div>-->
+
+                                <!--<div class="form-floating mb-3">-->
+                                <input type="email" class="form-control" id="floatingInput" name="email" value="${email}" placeholder="name@example.com" readonly="" hidden="" style="display: none;"> 
+                                <!--<label for="floatingInput">Email address</label>-->
+                                <!--</div>-->
+
+                                <div class="row" style="margin: 20px;">
+                                    <div class="col-md-offset-1 col-md-3 col-sm-12">
+                                        <div class="single-model-search">
+                                            <h2>Vehicle Company Name</h2>
+                                            <input type="text" class="form-control" id="floatingInput" name="cname" placeholder="Vehicle Company Name" required="">
+                                        </div>
+
+                                        <div class="single-model-search">
+                                            <h2>Transmission</h2>
+                                            <div class="model-select-icon">
+                                                <select class="form-control" name="trans">
+                                                    <option value="default">Transmission</option>
+                                                    <option value="Manual">Manual</option>
+                                                    <option value="Automatic">Automatic</option>
+                                                    <option value="Manual + Automatic">Manual + Automatic</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="single-model-search">
+                                            <h2>At What Price You want to Sell</h2>
+                                            <input type="text" class="form-control" id="floatingInput" name="eprice" placeholder="Expected Price" required="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-offset-1 col-md-3 col-sm-12">
+                                        <div class="single-model-search">
+                                            <h2>Vehicle / Modal Name</h2>
+                                            <input type="text" class="form-control" id="floatingInput" name="vname" placeholder="Vehicle Name" required="">
+                                        </div>
+
+                                        <div class="single-model-search">
+                                            <h2 style="margin-top: 35px;">Mileage</h2>
+                                            <input type="text" class="form-control" id="floatingInput" name="mileage" placeholder="Mileage" required="" style="margin-bottom: 50px;">
+                                        </div>
+
+                                        <div class="single-model-search">
+                                            <h2>Mobile Number</h2>
+                                            <input type="text" class="form-control" id="floatingInput" name="mobile" pattern="[6789][0-9]{9}" placeholder="Mobile Number" maxlength="10" required="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-offset-1 col-md-3 col-sm-12">
+                                        <div class="single-model-search">
+                                            <h2>Registration Year</h2>
+                                            <input type="text" class="form-control" id="floatingInput" name="ryear" placeholder="Registration Year" required="">
+                                        </div>
+
+                                        <div class="single-model-search">
+                                            <h2>Fuel Type</h2>
+                                            <div class="model-select-icon">
+                                                <select class="form-control" name="ftype">
+                                                    <option value="default">Fuel Type</option>
+                                                    <option value="Petrol">Petrol</option>
+                                                    <option value="Diesel">Diesel</option>
+                                                    <option value="Electric">Electric</option>
+                                                    <option value="CNG">CNG</option>
+                                                    <option value="Hybrid">Hybrid</option>
+                                                    <option value="Petrol + Diesel">Petrol + Diesel</option>
+                                                    <option value="Petrol + Electric">Petrol + Electric</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="single-model-search">
+                                            <h2>Features And Specifications</h2>
+                                            <textarea rows="2" class="form-control" id="floatingInput" name="desc" placeholder="Vehicle Description" required=""></textarea>
+                                        </div>
+                                    </div>
+                                    <center>
+                                        <button type="submit" class="btn btn-primary" onclick="return valid()" style="align-items: center; text-align: center;">Submit</button>
+                                    </center>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Services Section End -->
 
+        </section><!--/.welcome-hero-->
+        <!--welcome-hero end -->
 
-        <!-- Footer Section Begin -->
-        <footer class="footer set-bg" data-setbg="img/footer-bg.jpg" style="margin-top: 70px;">
+        <!--service start -->
+        <section id="service" class="service">
             <div class="container">
-                <div class="footer__contact">
+                <div class="service-content">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="footer__contact__title">
-                                <h2>Contact Us Now!</h2>
+                        <div class="col-md-4 col-sm-6">
+                            <a href="refurbished.jsp">
+                                <div class="single-service-item">
+                                    <div class="single-service-icon">
+                                        <img src="assets/images/service/old.jpg" alt="Vehicle Image" style="height:200px; margin-top: -50px;">
+                                        <!--<i class="flaticon-car"></i>-->
+                                    </div>
+                                    <h2><a href="refurbished.jsp">Buy Old Vehicle <span> From</span> Here</a></h2>
+                                    <p>
+                                        We Are Providing the facility to buy the old bike and car.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <a href="rentbike.jsp">
+                                <div class="single-service-item">
+                                    <div class="single-service-icon">
+                                        <img src="assets/images/service/BikeRent.jpg" alt="Vehicle Image" style="height:200px; margin-top: -50px;">
+                                        <!--<i class="flaticon-car-repair"></i>-->
+                                    </div>
+                                    <h2><a href="rentbike.jsp">Get Bike And Scooty on Rent</a></h2>
+                                    <p>
+                                        Here we are Providing the 2 wheeler on rent.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <a href="rentcar.jsp">
+                                <div class="single-service-item">
+                                    <div class="single-service-icon">
+                                        <img src="assets/images/service/CarRent.jpg" alt="Vehicle Image" style="height:200px; margin-top: -50px;">
+                                        <!--<i class="flaticon-car-1"></i>-->
+                                    </div>
+                                    <h2><a href="rentcar.jsp">Get Car On Rent</a></h2>
+                                    <p>
+                                        Here we are Providing the 4 wheeler on rent.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.container-->
+
+        </section><!--/.service-->
+        <!--service end-->
+
+        <!--new-cars start -->
+        <section id="new-cars" class="new-cars">
+            <div class="container">
+                <div class="section-header">
+                    <p>checkout <span>the</span> latest cars</p>
+                    <h2>newest cars</h2>
+                </div><!--/.section-header-->
+                <div class="new-cars-content">
+                    <div class="owl-carousel owl-theme" id="new-cars-carousel">
+                        <div class="new-cars-item">
+                            <div class="single-new-cars-item">
+                                <div class="row">
+                                    <div class="col-md-7 col-sm-12">
+                                        <div class="new-cars-img">
+                                            <img src="assets/images/new-cars-model/ncm1.png" alt="img" />
+                                        </div><!--/.new-cars-img-->
+                                    </div>
+                                    <div class="col-md-5 col-sm-12">
+                                        <div class="new-cars-txt">
+                                            <h2><a href="#">chevrolet camaro <span> za100</span></a></h2>
+                                            <p>
+                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p class="new-cars-para2">
+                                                Sed ut pers unde omnis iste natus error sit voluptatem accusantium
+                                                doloremque laudantium.
+                                            </p>
+                                            <button class="welcome-btn new-cars-btn" onclick="window.location.href = '#'">
+                                                view details
+                                            </button>
+                                        </div><!--/.new-cars-txt-->
+                                    </div><!--/.col-->
+                                </div><!--/.row-->
+                            </div><!--/.single-new-cars-item-->
+                        </div><!--/.new-cars-item-->
+                        <div class="new-cars-item">
+                            <div class="single-new-cars-item">
+                                <div class="row">
+                                    <div class="col-md-7 col-sm-12">
+                                        <div class="new-cars-img">
+                                            <img src="assets/images/new-cars-model/ncm2.png" alt="img" />
+                                        </div><!--/.new-cars-img-->
+                                    </div>
+                                    <div class="col-md-5 col-sm-12">
+                                        <div class="new-cars-txt">
+                                            <h2><a href="#">BMW series-3 wagon</a></h2>
+                                            <p>
+                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p class="new-cars-para2">
+                                                Sed ut pers unde omnis iste natus error sit voluptatem accusantium
+                                                doloremque laudantium.
+                                            </p>
+                                            <button class="welcome-btn new-cars-btn" onclick="window.location.href = '#'">
+                                                view details
+                                            </button>
+                                        </div><!--/.new-cars-txt-->
+                                    </div><!--/.col-->
+                                </div><!--/.row-->
+                            </div><!--/.single-new-cars-item-->
+                        </div><!--/.new-cars-item-->
+                        <div class="new-cars-item">
+                            <div class="single-new-cars-item">
+                                <div class="row">
+                                    <div class="col-md-7 col-sm-12">
+                                        <div class="new-cars-img">
+                                            <img src="assets/images/new-cars-model/ncm3.png" alt="img" />
+                                        </div><!--/.new-cars-img-->
+                                    </div>
+                                    <div class="col-md-5 col-sm-12">
+                                        <div class="new-cars-txt">
+                                            <h2><a href="#">ferrari 488 superfast</a></h2>
+                                            <p>
+                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                            <p class="new-cars-para2">
+                                                Sed ut pers unde omnis iste natus error sit voluptatem accusantium
+                                                doloremque laudantium.
+                                            </p>
+                                            <button class="welcome-btn new-cars-btn" onclick="window.location.href = '#'">
+                                                view details
+                                            </button>
+                                        </div><!--/.new-cars-txt-->
+                                    </div><!--/.col-->
+                                </div><!--/.row-->
+                            </div><!--/.single-new-cars-item-->
+                        </div><!--/.new-cars-item-->
+                    </div><!--/#new-cars-carousel-->
+                </div><!--/.new-cars-content-->
+            </div><!--/.container-->
+
+        </section><!--/.new-cars-->
+        <!--new-cars end -->
+
+        <!--featured-cars start -->
+        <section id="featured-cars" class="featured-cars">
+            <div class="container">
+                <div class="section-header">
+                    <p>checkout <span>the</span> featured cars</p>
+                    <h2>featured cars</h2>
+                </div><!--/.section-header-->
+                <div class="featured-cars-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-featured-cars">
+                                <div class="featured-img-box">
+                                    <div class="featured-cars-img">
+                                        <img src="assets/images/featured-cars/fc1.png" alt="cars">
+                                    </div>
+                                    <div class="featured-model-info">
+                                        <p>
+                                            model: 2017
+                                            <span class="featured-mi-span"> 3100 mi</span>
+                                            <span class="featured-hp-span"> 240HP</span>
+                                            automatic
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="featured-cars-txt">
+                                    <h2><a href="#">BMW 6-series gran coupe</a></h2>
+                                    <h3>$89,395</h3>
+                                    <p>
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="footer__contact__option">
-                                <div class="option__item"><i class="fa fa-phone"></i> (+91) 88188 33190</div>&nbsp; &nbsp; &nbsp; 
-                                <div class="option__item email"><i class="fa fa-envelope-o"></i> neerajsolanki271@gmail.com</div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-featured-cars">
+                                <div class="featured-img-box">
+                                    <div class="featured-cars-img">
+                                        <img src="assets/images/featured-cars/fc2.png" alt="cars">
+                                    </div>
+                                    <div class="featured-model-info">
+                                        <p>
+                                            model: 2017
+                                            <span class="featured-mi-span"> 3100 mi</span>
+                                            <span class="featured-hp-span"> 240HP</span>
+                                            automatic
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="featured-cars-txt">
+                                    <h2><a href="#">chevrolet camaro <span>wmv20</span></a></h2>
+                                    <h3>$66,575</h3>
+                                    <p>
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-featured-cars">
+                                <div class="featured-img-box">
+                                    <div class="featured-cars-img">
+                                        <img src="assets/images/featured-cars/fc3.png" alt="cars">
+                                    </div>
+                                    <div class="featured-model-info">
+                                        <p>
+                                            model: 2017
+                                            <span class="featured-mi-span"> 3100 mi</span>
+                                            <span class="featured-hp-span"> 240HP</span>
+                                            automatic
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="featured-cars-txt">
+                                    <h2><a href="#">lamborghini <span>v520</span></a></h2>
+                                    <h3>$125,250</h3>
+                                    <p>
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-featured-cars">
+                                <div class="featured-img-box">
+                                    <div class="featured-cars-img">
+                                        <img src="assets/images/featured-cars/fc4.png" alt="cars">
+                                    </div>
+                                    <div class="featured-model-info">
+                                        <p>
+                                            model: 2017
+                                            <span class="featured-mi-span"> 3100 mi</span>
+                                            <span class="featured-hp-span"> 240HP</span>
+                                            automatic
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="featured-cars-txt">
+                                    <h2><a href="#">audi <span> a3</span> sedan</a></h2>
+                                    <h3>$95,500</h3>
+                                    <p>
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-featured-cars">
+                                <div class="featured-img-box">
+                                    <div class="featured-cars-img">
+                                        <img src="assets/images/featured-cars/fc4.png" alt="cars">
+                                    </div>
+                                    <div class="featured-model-info">
+                                        <p>
+                                            model: 2017
+                                            <span class="featured-mi-span"> 3100 mi</span>
+                                            <span class="featured-hp-span"> 240HP</span>
+                                            automatic
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="featured-cars-txt">
+                                    <h2><a href="#">infiniti <span>z5</span></a></h2>
+                                    <h3>$36,850</h3>
+                                    <p>
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-featured-cars">
+                                <div class="featured-img-box">
+                                    <div class="featured-cars-img">
+                                        <img src="assets/images/featured-cars/fc5.png" alt="cars">
+                                    </div>
+                                    <div class="featured-model-info">
+                                        <p>
+                                            model: 2017
+                                            <span class="featured-mi-span"> 3100 mi</span>
+                                            <span class="featured-hp-span"> 240HP</span>
+                                            automatic
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="featured-cars-txt">
+                                    <h2><a href="#">porsche <span>718</span> cayman</a></h2>
+                                    <h3>$48,500</h3>
+                                    <p>
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-featured-cars">
+                                <div class="featured-img-box">
+                                    <div class="featured-cars-img">
+                                        <img src="assets/images/featured-cars/fc7.png" alt="cars">
+                                    </div>
+                                    <div class="featured-model-info">
+                                        <p>
+                                            model: 2017
+                                            <span class="featured-mi-span"> 3100 mi</span>
+                                            <span class="featured-hp-span"> 240HP</span>
+                                            automatic
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="featured-cars-txt">
+                                    <h2><a href="#"><span>bmw 8-</span>series coupe</a></h2>
+                                    <h3>$56,000</h3>
+                                    <p>
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-featured-cars">
+                                <div class="featured-img-box">
+                                    <div class="featured-cars-img">
+                                        <img src="assets/images/featured-cars/fc8.png" alt="cars">
+                                    </div>
+                                    <div class="featured-model-info">
+                                        <p>
+                                            model: 2017
+                                            <span class="featured-mi-span"> 3100 mi</span>
+                                            <span class="featured-hp-span"> 240HP</span>
+                                            automatic
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="featured-cars-txt">
+                                    <h2><a href="#">BMW <span> x</span>series-6</a></h2>
+                                    <h3>$75,800</h3>
+                                    <p>
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div><!--/.container-->
+
+        </section><!--/.featured-cars-->
+        <!--featured-cars end -->
+
+        <!-- clients-say strat -->
+        <section id="clients-say" class="clients-say">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Developers</h2>
+                    <!--<h2>what our clients say</h2>-->
+                </div><!--/.section-header-->
                 <div class="row">
-                    <div class="col-lg-4 col-md-4">
-                        <div class="footer__about">
-                            <div class="footer__logo">
-                                <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="single-testimonial-box">
+                                <div class="testimonial-description">
+                                    <div class="testimonial-info">
+                                        <div class="testimonial-img">
+                                            <!--<img src="assets/images/clients/c1.png" alt="image of clients person" />-->
+                                            <img src="assests/images/aboutus/anju.jpeg" alt="image of clients person" />
+                                        </div><!--/.testimonial-img-->
+                                    </div><!--/.testimonial-info-->
+                                    <div class="testimonial-comment">
+                                        <p>
+                                            Java Developer
+                                            
+                                        </p>
+                                    </div><!--/.testimonial-comment-->
+                                    <div class="testimonial-person">
+                                        <h2><a href="https://www.linkedin.com/in/anjali-ujjaini-8982anjali/">Anjali Ujjaini</a></h2>
+                                        <h4>Ujjain</h4>
+                                    </div><!--/.testimonial-person-->
+                                </div><!--/.testimonial-description-->
+                            </div><!--/.single-testimonial-box-->
+                        </div><!--/.col-->
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="single-testimonial-box">
+                                <div class="testimonial-description">
+                                    <div class="testimonial-info">
+                                        <div class="testimonial-img">
+                                            <img src="assests/images/aboutus/neera.jpeg" alt="image of clients person" />
+                                        </div><!--/.testimonial-img-->
+                                    </div><!--/.testimonial-info-->
+                                    <div class="testimonial-comment">
+                                        <p>
+                                            Java Developer
+                                            
+                                        </p>
+                                    </div><!--/.testimonial-comment-->
+                                    <div class="testimonial-person">
+                                        <h2><a href="https://www.linkedin.com/in/neeraj-solanki-a776b620b/">Neeraj Solanki</a></h2>
+                                        <h4>Dewas</h4>
+                                    </div><!--/.testimonial-person-->
+                                </div><!--/.testimonial-description-->
+                            </div><!--/.single-testimonial-box-->
+                        </div><!--/.col-->
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="single-testimonial-box">
+                                <div class="testimonial-description">
+                                    <div class="testimonial-info">
+                                        <div class="testimonial-img">
+                                            <img src="assets/images/clients/c3.png" alt="image of clients person" />
+                                        </div><!--/.testimonial-img-->
+                                    </div><!--/.testimonial-info-->
+                                    <div class="testimonial-comment">
+                                        <p>
+                                            Java Developer
+                                        </p>
+                                    </div><!--/.testimonial-comment-->
+                                    <div class="testimonial-person">
+                                        <h2><a href="#">Khushbu Raikwar</a></h2>
+                                        <h4>Indore</h4>
+                                    </div><!--/.testimonial-person-->
+                                </div><!--/.testimonial-description-->
+                            </div><!--/.single-testimonial-box-->
+                        </div><!--/.col-->
+                    </div><!--/.testimonial-carousel-->
+                </div><!--/.row-->
+            </div><!--/.container-->
+
+        </section><!--/.clients-say-->
+        <!-- clients-say end -->
+
+        <!--brand strat -->
+        <section id="brand" class="brand">
+            <div class="container">
+                <div class="brand-area">
+                    <div class="owl-carousel owl-theme brand-item">
+                        <div class="item">
+                            <a href="#">
+                                <img src="assets/images/brand/br1.png" alt="brand-image" />
+                            </a>
+                        </div><!--/.item-->
+                        <div class="item">
+                            <a href="#">
+                                <img src="assets/images/brand/br2.png" alt="brand-image" />
+                            </a>
+                        </div><!--/.item-->
+                        <div class="item">
+                            <a href="#">
+                                <img src="assets/images/brand/br3.png" alt="brand-image" />
+                            </a>
+                        </div><!--/.item-->
+                        <div class="item">
+                            <a href="#">
+                                <img src="assets/images/brand/br4.png" alt="brand-image" />
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#">
+                                <img src="assets/images/brand/br5.png" alt="brand-image" />
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#">
+                                <img src="assets/images/brand/br6.png" alt="brand-image" />
+                            </a>
+                        </div><!--/.item-->
+                    </div><!--/.owl-carousel-->
+                </div><!--/.clients-area-->
+
+            </div><!--/.container-->
+
+        </section><!--/brand-->
+        <!--brand end -->
+
+        <!--blog start -->
+        <section id="blog" class="blog"></section><!--/.blog-->
+        <!--blog end -->
+
+        <!--contact start-->
+        <footer id="contact" class="contact">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <div class="footer-logo">
+                                    <a href="index.html">Vehicle Valley</a>
+                                </div>
+                                <p>
+                                    We sell the old Vehicle, buy the old vehicle and also provide the vehicle give on rent facility. 
+                                </p>
+                                <div class="footer-contact">
+                                    <p>vehiclevalley@gmail.com</p>
+                                    <p>+91 88188 33190</p>
+                                </div>
                             </div>
-                            <p>Any questions? Let us know in gmail, and whatsapp on this number
-                                (+91) 88188 33190</p>
-                            <div class="footer__social">
-                                <!--                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                                                <a href="#" class="google"><i class="fa fa-google"></i></a>
-                                                                <a href="#" class="skype"><i class="fa fa-skype"></i></a>-->
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h2>About</h2>
+                                <ul>
+                                    <li><a href="aboutus.jsp">About Us</a></li>
+                                    <li><a href="#">Career</a></li>
+                                    <li><a href="#">terms <span> of service</span></a></li>
+                                    <li><a href="#">privacy policy</a></li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 offset-lg-1 col-md-3">
-                        <div class="footer__widget">
-                            <h5>Facility</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Sell Your Old Vehicle</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Purchase Second Hand Vehicle</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Buy Refurbished Vehicle</a></li>
-                                <!--<li><a href="#"><i class="fa fa-angle-right"></i> Rent a Vehicle</a></li>-->
-                            </ul>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="single-footer-widget">
+                                <h2>Services</h2>
+                                <div class="row">
+                                    <div class="col-md-7 col-xs-6">
+                                        <ul>
+                                            <li><a href="#">Car Wash</a></li>
+                                            <li><a href="#">Auto Parts</a></li>
+                                            <li><a href="#">Car Accessories</a></li>
+                                            <li><a href="#">Bike Accessories</a></li>
+                                            <li><a href="#">infiniti</a></li>
+                                            <li><a href="#">nissan</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-5 col-xs-6">
+                                        <ul>
+                                            <li><a href="#">ferrari</a></li>
+                                            <li><a href="#">porsche</a></li>
+                                            <li><a href="#">land rover</a></li>
+                                            <li><a href="#">aston martin</a></li>
+                                            <li><a href="#">mersedes</a></li>
+                                            <li><a href="#">opel</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3">
-                        <div class="footer__widget">
-                            <h5>Rent a vehicle</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Car</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Bike</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Bus</a></li>
-                                <!--<li><a href="#"><i class="fa fa-angle-right"></i> Crossover</a></li>-->
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer__brand">
-                            <h5>Top Brand</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Abarth</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Acura</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Alfa Romeo</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Audi</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> BMW</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Chevrolet</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Ferrari</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i> Honda</a></li>
-                            </ul>
+                        <div class="col-md-offset-1 col-md-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h2>news letter</h2>
+                                <div class="footer-newsletter">
+                                    <p>
+                                        Subscribe to get latest news update and informations
+                                    </p>
+                                </div>
+                                <div class="hm-foot-email">
+                                    <div class="foot-email-box">
+                                        <input type="text" class="form-control" placeholder="Add Email">
+                                    </div><!--/.foot-email-box-->
+                                    <div class="foot-email-subscribe">
+                                        <span><i class="fa fa-arrow-right"></i></span>
+                                    </div><!--/.foot-email-icon-->
+                                </div><!--/.hm-foot-email-->
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                <div class="footer__copyright__text">
-                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart" aria-hidden="true"></i> by <a href="#" target="_blank">Vehicle Valley</a></p>
+                <div class="footer-copyright">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Vehicle Valley</a>
+                            </p>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="footer-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.footer-copyright-->
+            </div><!--/.container-->
+
+            <div id="scroll-Top">
+                <div class="return-to-top">
+                    <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
+                       data-original-title="Back to Top" aria-hidden="true"></i>
                 </div>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </div>
-        </footer>
-        <!-- Footer Section End -->
+
+            </div><!--/.scroll-Top-->
+
+        </footer><!--/.contact-->
+        <!--contact end-->
+
+
+
+        <!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+        <script src="assets/js/jquery.js"></script>
+
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+        <!--bootstrap.min.js-->
+        <script src="assets/js/bootstrap.min.js"></script>
+
+        <!-- bootsnav js -->
+        <script src="assets/js/bootsnav.js"></script>
+
+        <!--owl.carousel.js-->
+        <script src="assets/js/owl.carousel.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+        <!--Custom JS-->
+        <script src="assets/js/custom.js"></script>
+
+
 
     </body>
+
+
+
+    <script>
+
+        function valid() {
+            var email = <%= email%>; // Enclose JSP expression in quotes and declare variables with var keyword
+                    if (email != null) {
+                        return true;
+                    } else {
+                        document.getElementById("error").innerHTML = "To Add the Vehicle Please Login First ";
+                        return false; // Prevent form submission
+                    }
+        }
+
+    </script>
 </html>

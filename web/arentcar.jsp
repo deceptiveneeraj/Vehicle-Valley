@@ -25,8 +25,8 @@
             <!--navbar start-->
             <nav class="navbar navbar-expand-lg bg-body-tertiary navbar fixed-top bg-body-tertiary"data-bs-theme="dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index.jsp" style="color: white; font-size: 25px; margin-right: 30px;">Vehicle Valley</a>
-                    <a href="index.jsp" style="color: white; text-decoration: none; margin: 15px;">Home</a>
+                    <a class="navbar-brand" href="adminhome.jsp" style="color: white; font-size: 25px; margin-right: 30px;">Vehicle Valley</a>
+                    <a href="adminhome.jsp" style="color: white; text-decoration: none; margin: 15px;">Admin Home</a>
                 </div>
 
             </nav>

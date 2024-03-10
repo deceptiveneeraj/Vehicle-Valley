@@ -93,7 +93,7 @@ public class LoginSignup extends HttpServlet {
 //                rd.forward(request, response);
                 response.sendRedirect("index.jsp");
             } else {
-                HttpSession hs = request.getSession(false);
+                HttpSession hs = request.getSession(true);
                 String mess = "Invalid Email or Password";
                 hs.setAttribute("lerrmess", mess);
                 RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
@@ -147,8 +147,8 @@ public class LoginSignup extends HttpServlet {
                 rd.include(request, response);
             }
             // Rearrange serial number;
-            smt.executeUpdate("SET @newSerial:=0");
-            smt.executeUpdate("UPDATE user SET id = @newSerial:=@newSerial+1 ORDER BY id");
+//            smt.executeUpdate("SET @newSerial:=0");
+//            smt.executeUpdate("UPDATE user SET id = @newSerial:=@newSerial+1 ORDER BY id");
 
             CreateConnection.closeConnection();
 

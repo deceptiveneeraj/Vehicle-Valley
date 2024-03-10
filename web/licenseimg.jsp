@@ -4,11 +4,6 @@
     Author     : neera
 --%>
 
-<%-- 
-    Document   : rentrequest
-    Created on : 04-Mar-2024, 6:54:16 pm
-    Author     : neera
---%>
 <%@page import="com.vehiclevalley.connection.CreateConnection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
