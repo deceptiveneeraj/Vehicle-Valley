@@ -1,7 +1,3 @@
-Here's a draft for your README file for the Vehicle Service Management System - Vehicle Valley:
-
----
-
 # Vehicle Valley
 
 ## Project Title
